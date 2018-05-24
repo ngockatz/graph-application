@@ -9,9 +9,8 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-//import Kruskal.*;
+
 /**
- *
  * @author ngockatz
  */
 public class MainForm extends javax.swing.JFrame {
@@ -237,29 +236,22 @@ public class MainForm extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void bttnMinSpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnMinSpanActionPerformed
+    private void bttnMinSpanActionPerformed(java.awt.event.ActionEvent evt) {
         try{road.setLength(0);
-        //int []k1 = new int[G.n()];
-        //int []d1 = new int[100];
-        //Prim.Prim(G, 0, d1, k1);
-        //for (int k=0; k< G.n(); k++) road.append(k1[k] + " ");
-        //System.out.println(road.toString());
-        //road.setLength(0);
         road.append("The following edges form a minimal spanning tree:\n");
         MST t = new MST(G);
         t.primMST(G.matrix,road);
         JOptionPane.showMessageDialog(null, road.toString(), "Minimal Spanning Tree", JOptionPane.INFORMATION_MESSAGE);
         }
         catch(NullPointerException e){JOptionPane.showMessageDialog(null, "No graph to find MST", "No graph on file", JOptionPane.ERROR_MESSAGE);}
-    }//GEN-LAST:event_bttnMinSpanActionPerformed
+    }
 
     private void bttnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnImportActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new java.io.File("C:/Users/"));
         chooser.setFileFilter(new FileNameExtensionFilter("Trivial Graph Format","tgf","txt"));    
-        //fileselected=new FileReader(chooser.getSelectedFile());
         int val = chooser.showOpenDialog(this);
         
         if (val==JFileChooser.APPROVE_OPTION){
@@ -267,17 +259,14 @@ public class MainForm extends javax.swing.JFrame {
                 fileselected=new FileReader(chooser.getSelectedFile());
                 
                 br = new BufferedReader(fileselected);
-                //br.mark(1);
-                //brclone = new BufferedReader(fileselected);
                 lblGraph.setText("File successfully imported");
             }
             catch (IOException ioe){
                 JOptionPane.showMessageDialog(null, "There was a problem reading the file", "Alert", JOptionPane.ERROR_MESSAGE);
-                } //{JOptionPane.showMessageDialog(null, "Wrong extension", "Alert", JOptionPane.ERROR_MESSAGE)
+                }
         }
         else {
             JOptionPane.showMessageDialog(null, "No file has been imported", "Error", JOptionPane.ERROR_MESSAGE);
-            //System.exit(0);
         }
         if (val==JFileChooser.APPROVE_OPTION){
         int d=JOptionPane.showConfirmDialog(null, "Is this graph directed?","Graph Direction",JOptionPane.YES_NO_OPTION);
@@ -294,7 +283,6 @@ public class MainForm extends javax.swing.JFrame {
             br.close();
             
         } catch (IOException ex) {
-            //Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "There was an error in reading the graph file", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
@@ -303,11 +291,10 @@ public class MainForm extends javax.swing.JFrame {
             cbFrom.addItem(""+i);
             cbTo.addItem(""+i);
         }
-        //for (int j=0;j<G.n();j++) V[j]=j;
         }
-    }//GEN-LAST:event_bttnImportActionPerformed
+    }
 
-    private void bttnTraverseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnTraverseActionPerformed
+    private void bttnTraverseActionPerformed(java.awt.event.ActionEvent evt) {
         isDFS = optDFS.isSelected();
         try{
 
@@ -322,37 +309,31 @@ public class MainForm extends javax.swing.JFrame {
         }
         }
         catch (NullPointerException e){JOptionPane.showMessageDialog(null, "No graph to traverse", "No graph on file", JOptionPane.ERROR_MESSAGE);}
-    }//GEN-LAST:event_bttnTraverseActionPerformed
+    }
 
-    private void optDFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optDFSActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_optDFSActionPerformed
+    private void optDFSActionPerformed(java.awt.event.ActionEvent evt) {
+        
+    }
 
-    private void bttnDijkstraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnDijkstraActionPerformed
+    private void bttnDijkstraActionPerformed(java.awt.event.ActionEvent evt) {
         try{
         fromnode=(String) cbFrom.getSelectedItem();
         tonode=(String) cbTo.getSelectedItem();
         Dijkstra.Dijkstra(G, Integer.parseInt(fromnode), D);
-        //road.setLength(0);
-        //for(int z=0;z<G.n();z++) road.append(D[z]+" ");
-        //System.out.println(road.toString());
-        //System.out.println(D[Integer.parseInt(tonode)]);
         lblDistance.setText(""+D[Integer.parseInt(tonode)]);}
         catch (NumberFormatException e){JOptionPane.showMessageDialog(null, "No nodes to find shortest path", "Graph not found", JOptionPane.ERROR_MESSAGE);}
-    }//GEN-LAST:event_bttnDijkstraActionPerformed
+    }
 
-    private void cbFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFromActionPerformed
-        //for (int i=0;i<G.n();i++) cbFrom.addItem(""+i);
-    }//GEN-LAST:event_cbFromActionPerformed
+    private void cbFromActionPerformed(java.awt.event.ActionEvent evt) {
+        
+    }
 
-    private void bttnChpolyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnChpolyActionPerformed
-        //BreakGraph.undirectedChromaPolynomial(G, chroma);
-        //chroma.toString();
+    private void bttnChpolyActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser chooser2 = new JFileChooser();
         chooser2.setDialogTitle("Reopen the graph file");
         chooser2.setCurrentDirectory(new java.io.File("C:/Users/"));
         chooser2.setFileFilter(new FileNameExtensionFilter("Trivial Graph Format","tgf","txt"));    
-        //fileselected=new FileReader(chooser.getSelectedFile());
+
         int val = chooser2.showOpenDialog(this);
         
         if (val==JFileChooser.APPROVE_OPTION){
@@ -360,83 +341,43 @@ public class MainForm extends javax.swing.JFrame {
                 FileReader fileselected=new FileReader(chooser2.getSelectedFile());
                 
                 brclone = new BufferedReader(fileselected);
-                //br.mark(1);
-                //brclone = new BufferedReader(fileselected);
                 lblGraph.setText("For other functions, reimport the same graph by clicking above");
                 lblDirect.setText("");
             }
             catch (IOException ioe){
                 JOptionPane.showMessageDialog(null, "There was a problem reading the file", "Alert", JOptionPane.ERROR_MESSAGE);
-                } //{JOptionPane.showMessageDialog(null, "Wrong extension", "Alert", JOptionPane.ERROR_MESSAGE)
+                }
         }
         else {
             JOptionPane.showMessageDialog(null, "No file has been imported", "Error", JOptionPane.ERROR_MESSAGE);
-            //System.exit(0);
         }
         if (val==JFileChooser.APPROVE_OPTION){
         try {
             G2 = Parsing.createGraphl(brclone, G2, false);       
             
         } catch (IOException ex) {
-            //Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "There was an error in reading the graph file", "Error", JOptionPane.ERROR_MESSAGE);
         }
         chroma=MLGraph.chromaPolynomial(G2);
-        //System.out.println(chroma);
-        //System.out.println(G2.e());
+
         JOptionPane.showMessageDialog(null, "Chromatic function is: " + chroma 
                 +"\nChromatic number is: " + chroma.minNo(), "Chromatic Function & Number", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_bttnChpolyActionPerformed
+    }
 
-    private void bttnChpolyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnChpolyMouseEntered
+    private void bttnChpolyMouseEntered(java.awt.event.MouseEvent evt) {
         lblChroma.setText("This button will ask you to reimport the graph");
-    }//GEN-LAST:event_bttnChpolyMouseEntered
+    }
 
-    private void lblChromaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblChromaMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblChromaMouseExited
+    private void lblChromaMouseExited(java.awt.event.MouseEvent evt) {
+       
+    }
 
-    private void bttnChpolyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttnChpolyMouseExited
+    private void bttnChpolyMouseExited(java.awt.event.MouseEvent evt) {
         lblChroma.setText("");
-    }//GEN-LAST:event_bttnChpolyMouseExited
+    }
 
     
-    
-    
-    
-
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MainForm().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnChpoly;
